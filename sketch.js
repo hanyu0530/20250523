@@ -4,6 +4,10 @@ let predictions = [];
 const indices = [409,270,269,267,0,37,39,40,185,61,146,91,181,84,17,314,405,321,375,291];
 const indices2 = [76,77,90,180,85,16,315,404,320,307,306,408,304,303,302,11,72,73,74,184];
 
+// 新增藍色線條與第二組線條的索引
+const blueIndices = [243,190,56,28,27,29,30,247,130,25,110,24,23,22,26,112];
+const blueIndices2 = [133,173,157,158,159,160,161,246,33,7,163,144,145,153,154,155];
+
 function setup() {
   createCanvas(640, 480).position(
     (windowWidth - 640) / 2,
@@ -70,5 +74,31 @@ function draw() {
       vertex(x, y);
     }
     endShape(CLOSE);
+
+    // ===== 新增：藍色線條與第二組線條 =====
+
+    // 畫藍色線條
+    stroke(0, 0, 255);
+    strokeWeight(15);
+    noFill();
+    beginShape();
+    for (let i = 0; i < blueIndices.length; i++) {
+      const idx = blueIndices[i];
+      const [x, y] = keypoints[idx];
+      vertex(x, y);
+    }
+    endShape();
+
+    // 畫第二組藍色線條
+    stroke(0, 0, 255);
+    strokeWeight(15);
+    noFill();
+    beginShape();
+    for (let i = 0; i < blueIndices2.length; i++) {
+      const idx = blueIndices2[i];
+      const [x, y] = keypoints[idx];
+      vertex(x, y);
+    }
+    endShape();
   }
 }
