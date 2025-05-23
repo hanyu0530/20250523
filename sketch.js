@@ -1,5 +1,6 @@
 let facemesh;
 let predictions = [];
+let video; // 新增 video 變數
 const points = [409,270,269,267,0,37,39,40,185,61,146,91,181,84,17,314,405,321,375,291];
 const points2 = [76,77,90,180,85,16,315,404,320,307,306,408,304,303,302,11,72,73,74,184];
 
@@ -11,7 +12,7 @@ function setup() {
   createCanvas(640, 480).position(x, y);
 
   // 啟用視訊
-  let video = createCapture(VIDEO);
+  video = createCapture(VIDEO); // 指定為全域變數
   video.size(width, height);
   video.hide();
 
@@ -28,6 +29,9 @@ function modelReady() {
 
 function draw() {
   background(220);
+
+  // 將視訊畫面顯示在畫布上
+  image(video, 0, 0, width, height);
 
   if (predictions.length > 0) {
     let keypoints = predictions[0].scaledMesh;
